@@ -43,6 +43,7 @@ function Login(props) {
 
     if (password.length < 8) {
       setPasswordError(true);
+      return;
     }
     else {
 
@@ -50,6 +51,7 @@ function Login(props) {
 
       if (!emailPattern.test(email)) {
         setEmailError(true);
+        return;
       }
       else {
         setEmailError(false);
@@ -88,7 +90,7 @@ function Login(props) {
       }
 
   
-      <form onSubmit={handleSubmit} className='w-1/3 h-[85%] flex flex-col items-center justify-around shadow-md  rounded-lg p-4 bg-white'>
+      <form onSubmit={handleSubmit} className='w-full md:w-1/3 h-screen md:h-[85%] flex flex-col items-center justify-around shadow-md  rounded-lg p-4 bg-white'>
         <h1 className='text-black text-[2.5rem] font-bold'>Login</h1>
 
 

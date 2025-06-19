@@ -50,6 +50,7 @@ function Login(props) {
 
     if (password.length < 8) {
       setPasswordError(true);
+      return;
     }
     else if (password !== confirm_password) {
       setConfirmPasswordError(true);
@@ -60,6 +61,7 @@ function Login(props) {
 
       if (!emailPattern.test(email)) {
         setEmailError(true);
+        return;
       }
       else {
         setEmailError(false);
@@ -97,7 +99,7 @@ function Login(props) {
         is_login_error && <MessageBox message={login_message} color={'bg-red-500'} />
       }
 
-      <form onSubmit={handleSubmit} className='lg:w-1/3 h-[85%] flex flex-col items-center justify-around shadow-md rounded-lg p-4 bg-white'>
+      <form onSubmit={handleSubmit} className='w-full md:w-1/3 h-screen md:h-[85%]  flex flex-col items-center justify-around shadow-md rounded-lg p-4 bg-white'>
 
         <h1 className='text-black text-[2.5rem] font-bold'>Register</h1>
 
