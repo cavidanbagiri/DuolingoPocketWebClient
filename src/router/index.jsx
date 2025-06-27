@@ -3,9 +3,11 @@ import {
     createBrowserRouter,
 } from "react-router-dom";
 
-import Dashboard from "../pages/Dashboard";
-import Auth from "../pages/Auth";
 import Navbar from "../pages/Navbar";
+import Dashboard from "../pages/Dashboard";
+import Learned from "../pages/Learned";
+import SavedWords from "../pages/SavedWords";
+import Auth from "../pages/Auth";
 import Profile from "../pages/Profile";
 
 
@@ -17,6 +19,14 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Dashboard/>
+            },
+            {
+                path: "/savedwords",
+                element: <SavedWords/>
+            },
+            {
+                path: "/learned",
+                element: <Learned/>
             },
             {
                 path: "/auth",

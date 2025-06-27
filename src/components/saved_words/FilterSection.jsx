@@ -1,5 +1,4 @@
 
-import React from 'react'
 
 import { IoFilterOutline } from "react-icons/io5";
 
