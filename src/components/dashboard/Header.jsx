@@ -12,7 +12,7 @@ function Header() {
           <motion.h1
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: "easeIn" }}
             style={{ fontFamily: "Open Sans" }}
             className='text-5xl font-bold text-black'
           >

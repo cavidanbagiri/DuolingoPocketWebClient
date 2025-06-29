@@ -14,7 +14,7 @@ const initialState = {
     },
     login_message: '',
     login_pending: false,
-    is_auth: true,
+    is_auth: false,
     is_login_error: false,
     login_success: false,
 }

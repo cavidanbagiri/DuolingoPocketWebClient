@@ -6,16 +6,21 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import MessageBox from '../layouts/MessageBox';
 
-import { setIsLoginErrorFalse, setIsLoginSuccessFalse } from '../store/auth-store';
+import { setIsLoginSuccessFalse } from '../store/auth-store';
+
 import Header from '../components/dashboard/Header';
 import UserTitle from '../components/dashboard/UserTitle';
 import Cards from '../components/dashboard/Cards';
+
+import DashboardService from '../service/dashboard-service';
 
 function Dashboard() {
 
   const dispatch = useDispatch();
 
-  const { is_login_error, login_success } = useSelector((state) => state.authSlice);
+  const { login_success } = useSelector((state) => state.authSlice);
+
+  const { language_pair_stats } = useSelector((state) => state.dashboardSlice);
 
 
   useEffect(() => {
@@ -25,6 +30,11 @@ function Dashboard() {
       }, 2000);
     }
   }, [login_success]);
+
+
+  useEffect(() => {
+    dispatch(DashboardService.get_language_pair_stats());
+  }, []);
 
 
   return (
@@ -40,7 +50,7 @@ function Dashboard() {
 
       <Header />
 
-      <Cards />
+      <Cards language_pair_stats={language_pair_stats} />
 
 
     </div>
