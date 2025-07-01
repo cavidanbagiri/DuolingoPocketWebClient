@@ -1,18 +1,34 @@
 
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+
 import ReactCountryFlag from "react-country-flag";
 
 import { getCountryCode } from '../../utils/languageFlags';
 
 function Card({ title, data }) {
+
+  const navigate = useNavigate();
+
   return (
-    <div 
+    <div
+
+      onClick={() => {
+        localStorage.setItem('languageFilter', JSON.stringify({
+          from_lang: data?.from_lang,
+          to_lang: data?.to_lang
+        }));
+    
+        navigate('/savedwords');
+      }}
+
       style={{ fontFamily: "Open Sans" }}
-      className='flex items-center justify-between flex-col w-[30%] h-84 p-4 rounded-xl shadow-md bg-gray-100'
-    >
+      className='flex items-center justify-between flex-col w-[30%] h-84 p-4 rounded-xl shadow-md bg-gray-100 hover:shadow-2xl duration-150 cursor-pointer ' >
       {/* Language Pair with Flags */}
       <div className='flex items-center gap-2 mb-2'>
         <div className='flex items-center'>
-          <ReactCountryFlag 
+          <ReactCountryFlag
             countryCode={getCountryCode(data?.from_lang)}
             svg
             style={{
@@ -27,11 +43,11 @@ function Card({ title, data }) {
             {data?.from_lang.toUpperCase()}
           </span>
         </div>
-        
+
         <span className='mx-2 text-gray-500'>→</span>
-        
+
         <div className='flex items-center'>
-          <ReactCountryFlag 
+          <ReactCountryFlag
             countryCode={getCountryCode(data?.to_lang)}
             svg
             style={{
@@ -50,7 +66,7 @@ function Card({ title, data }) {
 
       {/* Title */}
       <span className='text-4xl font-bold my-2'>{title}</span>
-      
+
       {/* Progress Circle */}
       <div className='flex w-40 h-40 items-center justify-center rounded-full border-12 font-bold text-xl border-gray-500'>
         {data?.total_word} / {data?.learned}

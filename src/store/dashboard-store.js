@@ -6,6 +6,7 @@ import DashboardService from '../service/dashboard-service';
 const initialState = {
     language_pair_stats: [],
     language_pair_stats_pending: false,
+
 }
 
 export const dashboardSlice = createSlice({
@@ -21,12 +22,14 @@ export const dashboardSlice = createSlice({
     },
     extraReducers: (builder) => {
 
+
         // DashboardService get_language_pair_stats
         builder.addCase(DashboardService.get_language_pair_stats.pending, (state, action) => {
             state.language_pair_stats_pending = true;
         })
         builder.addCase(DashboardService.get_language_pair_stats.fulfilled, (state, action) => {
             state.language_pair_stats = action.payload.payload;
+            console.log('result is ', action.payload.payload);
             state.language_pair_stats_pending = false;
         });
         builder.addCase(DashboardService.get_language_pair_stats.rejected, (state, action) => {
