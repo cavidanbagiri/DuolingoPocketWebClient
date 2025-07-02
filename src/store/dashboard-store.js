@@ -29,6 +29,7 @@ export const dashboardSlice = createSlice({
         })
         builder.addCase(DashboardService.get_language_pair_stats.fulfilled, (state, action) => {
             state.language_pair_stats = action.payload.payload;
+            console.log(' language_pair_stats', action.payload.payload);
             state.language_pair_stats_pending = false;
         });
         builder.addCase(DashboardService.get_language_pair_stats.rejected, (state, action) => {
