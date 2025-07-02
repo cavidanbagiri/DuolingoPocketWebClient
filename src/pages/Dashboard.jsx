@@ -11,6 +11,7 @@ import { setIsLoginSuccessFalse } from '../store/auth-store';
 import Header from '../components/dashboard/Header';
 import UserTitle from '../components/dashboard/UserTitle';
 import Cards from '../components/dashboard/Cards';
+import UserProfile from '../components/dashboard/UserProfile';
 
 function Dashboard() {
 
@@ -32,7 +33,7 @@ function Dashboard() {
 
 
   return (
-    <div className='flex flex-col p-4 '>
+    <div className='flex flex-row p-4 bg-gray-50 '>
 
 
       {/* After login or Register */}
@@ -40,11 +41,18 @@ function Dashboard() {
         login_success && <MessageBox message={'Successfully logged in'} color={'bg-green-500'} />
       }
 
-      <UserTitle />
+      <div className='flex flex-col w-full h-screen mr-10'>
+        <UserTitle />
+        <Cards language_pair_stats={language_pair_stats} />
+      </div>
 
-      <Header />
 
-      <Cards language_pair_stats={language_pair_stats} />
+      <div className='flex flex-row justify-between items-center w-1/3'>
+
+        <UserProfile />
+
+      </div>
+      
 
 
     </div>

@@ -14,7 +14,7 @@ function FilterSection() {
 
     return (
         <div style={{ fontFamily: "Roboto" }}
-            className='flex flex-row my-5'>
+            className='flex flex-row mb-5'>
 
             <div className='flex flex-row justify-between items-center rounded-lg p-1 w-full '>
 

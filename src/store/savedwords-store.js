@@ -29,6 +29,7 @@ export const savedWordsSlice = createSlice({
         })
         builder.addCase(SavedWordsService.get_language_pair_stats_by_lang.fulfilled, (state, action) => {
             state.language_pair_stats_by_lang = action.payload.payload;
+            console.log('.................. {}', action.payload.payload);
             state.language_pair_stats_by_lang_pending = false;
         });
         builder.addCase(SavedWordsService.get_language_pair_stats_by_lang.rejected, (state, action) => {

@@ -7,7 +7,7 @@ import ReactCountryFlag from "react-country-flag";
 
 import { getCountryCode } from '../../utils/languageFlags';
 
-function Card({ title, data }) {
+function Card({ data }) {
 
   const navigate = useNavigate();
 
@@ -24,17 +24,17 @@ function Card({ title, data }) {
       }}
 
       style={{ fontFamily: "Open Sans" }}
-      className='flex items-center justify-between flex-col w-[30%] h-84 p-4 rounded-xl shadow-md bg-gray-100 hover:shadow-2xl duration-150 cursor-pointer ' >
-      {/* Language Pair with Flags */}
+      className='flex items-center justify-between flex-col w-full  p-4 rounded-xl shadow-md bg-white hover:shadow-2xl duration-150 cursor-pointer ' >
       <div className='flex items-center gap-2 mb-2'>
         <div className='flex items-center'>
           <ReactCountryFlag
             countryCode={getCountryCode(data?.from_lang)}
             svg
             style={{
-              width: '24px',
-              height: '24px',
+              width: '25px',
+              height: '25px',
               borderRadius: '50%',
+              border: '1px solid #ccc',
               objectFit: 'cover'
             }}
             title={data?.from_lang.toUpperCase()}
@@ -51,9 +51,10 @@ function Card({ title, data }) {
             countryCode={getCountryCode(data?.to_lang)}
             svg
             style={{
-              width: '24px',
-              height: '24px',
+              width: '25px',
+              height: '25px',
               borderRadius: '50%',
+              border: '1px solid #ccc',
               objectFit: 'cover'
             }}
             title={data?.to_lang.toUpperCase()}
@@ -64,8 +65,6 @@ function Card({ title, data }) {
         </div>
       </div>
 
-      {/* Title */}
-      <span className='text-4xl font-bold my-2'>{title}</span>
 
       {/* Progress Circle */}
       <div className='flex w-40 h-40 items-center justify-center rounded-full border-12 font-bold text-xl border-gray-500'>

@@ -7,13 +7,19 @@ import { PiBrainLight } from "react-icons/pi";
 import Skeleton from '@mui/material/Skeleton';
 import Box from '@mui/material/Box';
 
+import SavedWordsService from '../../service/savedwords-service';
 
 import CardIconComponent from './CardIconComponent';
 
 
 
 function CardLayoutComponent() {
+  
+  const dispatch = useDispatch();
+
   const { language_pair_stats_by_lang, language_pair_stats_by_lang_pending } = useSelector((state) => state.savedWordsSlice);
+
+  
 
   return (
     <div className="flex justify-center w-full ">
@@ -43,16 +49,31 @@ function CardLayoutComponent() {
                         border border-blue-700 p-4 rounded-lg shadow-md transition-transform duration-200 hover:scale-105 
                         cursor-pointer h-48 w-full" // Remove fixed widths, let grid handle it
               >
-                <div className='flex flex-col items-start justify-center mb-2  w-full'>
+                <div className='flex flex-col items-start justify-center  w-full'>
                   <div className='flex flex-row w-full justify-end '>
 
-                    <CardIconComponent icon_name={CiStar} tooltipText={'Star'} />
-                    <CardIconComponent icon_name={PiBrainLight} tooltipText={'Learned'} />
+                    <span onClick={() =>{
+                      dispatch(SavedWordsService.change_word_status({
+                        word_id: item.id, 
+                        status: 'starred'
+                      }));
+                    }}>
+                      <CardIconComponent icon_name={CiStar} tooltipText={'Star'} />
+                    </span>
+                    
+                    <span onClick={() =>{
+                      dispatch(SavedWordsService.change_word_status({
+                        word_id: item.id,
+                        status: 'learned'
+                      }));
+                    }}>
+                      <CardIconComponent icon_name={PiBrainLight} tooltipText={'Learned'} />
+                    </span>
 
                   </div>
-                  <h1 className='text-xl capitalize'>{item.word}</h1>
+                  <h1 className='text-xl capitalize '>{item.word}</h1>
                   <p className=' text-gray-300 capitalize text-[16px]'>
-                    {item.part_of_speech}
+                    {item.part_of_speech} {item.id}
                   </p>
                 </div>
                 <p className='text-sm capitalize'>
