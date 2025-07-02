@@ -12,8 +12,6 @@ import Header from '../components/dashboard/Header';
 import UserTitle from '../components/dashboard/UserTitle';
 import Cards from '../components/dashboard/Cards';
 
-import DashboardService from '../service/dashboard-service';
-
 function Dashboard() {
 
   const dispatch = useDispatch();
@@ -31,10 +29,6 @@ function Dashboard() {
     }
   }, [login_success]);
 
-
-  useEffect(() => {
-    dispatch(DashboardService.get_language_pair_stats());
-  }, []);
 
 
   return (

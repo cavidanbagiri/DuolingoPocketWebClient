@@ -28,7 +28,7 @@ function SavedWords() {
         <div className='flex flex-col p-10'>
 
             <div className='flex justify-between items-center mb-4'>
-                <h1 className=' text-4xl font-bold'>Saved words</h1>
+                <h1 className=' text-5xl font-bold'>Dictionary</h1>
             </div>
 
 

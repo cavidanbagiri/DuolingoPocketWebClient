@@ -22,11 +22,11 @@ function FilterSection() {
     }));
 
     return (
-        <div style={{ fontFamily: "Roboto" }} className='flex flex-row my-5'>
-            <div className='flex flex-row justify-between items-center rounded-lg p-1 w-full '>
+        <div style={{ fontFamily: "Roboto" }} className='flex flex-row my-5 mr-5'>
+            <div className='flex flex-row justify-between items-center bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none p-1 w-full '>
                 <div className="relative">
                     <button
-                        className='flex flex-row text-[13px] items-center bg-gray-100 rounded-lg p-2 w-full'
+                        className='flex flex-row text-[13px] items-center  rounded-lg p-1 w-full'
                         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                         disabled={!language_pair_stats_by_lang} // Disable button while loading
                     >

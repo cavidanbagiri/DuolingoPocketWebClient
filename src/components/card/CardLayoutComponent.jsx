@@ -35,7 +35,7 @@ function CardLayoutComponent() {
             <Skeleton sx={{ bgcolor: 'grey.500' }} variant="rectangular" width={230} height={192} />
           </Box>
           :
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 max-w-7xl w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-5 w-full">  
             {language_pair_stats_by_lang?.words?.map((item, index) => (
               <div
                 key={index}
