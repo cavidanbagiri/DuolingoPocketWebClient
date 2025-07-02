@@ -1,28 +1,40 @@
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
-import { CiStar } from "react-icons/ci";
-import { PiBrainLight } from "react-icons/pi";
+import { useSelector, useDispatch } from 'react-redux';
 
 import Skeleton from '@mui/material/Skeleton';
 import Box from '@mui/material/Box';
 
-import SavedWordsService from '../../service/savedwords-service';
+import { setChangedWordStatusFalse } from '../../store/savedwords-store';
 
-import CardIconComponent from './CardIconComponent';
-
-
+import CardComponent from './CardComponent';
+import MessageBox from '../../layouts/MessageBox';
 
 function CardLayoutComponent() {
-  
+
   const dispatch = useDispatch();
 
-  const { language_pair_stats_by_lang, language_pair_stats_by_lang_pending } = useSelector((state) => state.savedWordsSlice);
 
-  
+  const { language_pair_stats_by_lang, language_pair_stats_by_lang_pending, changed_word_staus } = useSelector((state) => state.savedWordsSlice);
+
+
+  useEffect(()=>{
+    if (changed_word_staus.show) {
+      setTimeout(() => {
+        dispatch(setChangedWordStatusFalse());
+      }, 2000);
+    }
+  }, [changed_word_staus]);
 
   return (
     <div className="flex justify-center w-full ">
+
+      {
+        changed_word_staus.show &&
+        <MessageBox message={changed_word_staus.message} color={changed_word_staus.color} />
+      }
+
 
       {
         language_pair_stats_by_lang_pending ?
@@ -41,45 +53,9 @@ function CardLayoutComponent() {
             <Skeleton sx={{ bgcolor: 'grey.500' }} variant="rectangular" width={230} height={192} />
           </Box>
           :
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-5 w-full">  
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-5 w-full">
             {language_pair_stats_by_lang?.words?.map((item, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-start justify-between text-white font-medium bg-gradient-to-br from-blue-500 to-indigo-600 
-                        border border-blue-700 p-4 rounded-lg shadow-md transition-transform duration-200 hover:scale-105 
-                        cursor-pointer h-48 w-full" // Remove fixed widths, let grid handle it
-              >
-                <div className='flex flex-col items-start justify-center  w-full'>
-                  <div className='flex flex-row w-full justify-end '>
-
-                    <span onClick={() =>{
-                      dispatch(SavedWordsService.change_word_status({
-                        word_id: item.id, 
-                        status: 'starred'
-                      }));
-                    }}>
-                      <CardIconComponent icon_name={CiStar} tooltipText={'Star'} />
-                    </span>
-                    
-                    <span onClick={() =>{
-                      dispatch(SavedWordsService.change_word_status({
-                        word_id: item.id,
-                        status: 'learned'
-                      }));
-                    }}>
-                      <CardIconComponent icon_name={PiBrainLight} tooltipText={'Learned'} />
-                    </span>
-
-                  </div>
-                  <h1 className='text-xl capitalize '>{item.word}</h1>
-                  <p className=' text-gray-300 capitalize text-[16px]'>
-                    {item.part_of_speech} {item.id}
-                  </p>
-                </div>
-                <p className='text-sm capitalize'>
-                  {item.translation}
-                </p>
-              </div>
+              <CardComponent key={index} item={item} />
             ))}
           </div>
       }

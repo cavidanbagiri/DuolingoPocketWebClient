@@ -45,7 +45,6 @@ class SavedWordsService {
                         part_of_speech: partOfSpeech,
                     },
                 });
-                console.log('first', response);
                 return {
                     payload: response.data,
                     status: response.status,
@@ -63,34 +62,6 @@ class SavedWordsService {
         });
 
     
-
-
-    static get_filter_by_word = createAsyncThunk(
-        '/words/dashboard/filter/word',
-        async ({ word }, thunkAPI) => {
-            try {
-                const response = await $api.get(`/words/dashboard/filter/word/`, {
-                    params: {
-                        word: word,
-                    },
-                });
-                return {
-                    payload: response.data,
-                    status: response.status,
-                };
-            } catch (error) {
-                const errorData = error.response?.data || { message: error.message };
-                const statusCode = error.response?.status || 500;
-
-                return thunkAPI.rejectWithValue({
-                    payload: errorData,
-                    status: statusCode,
-                });
-            }
-
-        });
-    
-
     static change_word_status = createAsyncThunk(
         '/words/set_status',
         async ({ word_id, status }, thunkAPI) => {
@@ -98,10 +69,8 @@ class SavedWordsService {
                 word_id: word_id,
                 w_status: status,
             }
-            console.log('data us {}', data);
             try {
                 const response = await $api.post(`/words/set_status`, data);
-                console.log('response is {}', response);
                 return {
                     payload: response.data,
                     status: response.status,

@@ -25,7 +25,7 @@ function SavedWords() {
     }, [dispatch]);
 
     return (
-        <div className='flex flex-col p-10'>
+        <div className='flex flex-col p-6'>
 
             {/* <div className='flex justify-between items-center mb-4'>
                 <h1 className=' text-5xl font-bold'>Dictionary</h1>
