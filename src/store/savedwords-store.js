@@ -72,7 +72,7 @@ export const savedWordsSlice = createSlice({
                     if (action.payload.payload.w_status === 'starred') {
                         item.starred = !item.starred;
                     }
-                    else if (action.payload.payload.w_status === 'learned') {
+                    else if (action.payload.payload.w_status === 'learned' || action.payload.payload.w_status === 'delete') {
                         state.language_pair_stats_by_lang.words.splice(index, 1);
                     }
                     state.changed_word_staus.message = action.payload.payload.detail;
