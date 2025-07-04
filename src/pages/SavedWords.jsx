@@ -33,7 +33,7 @@ function SavedWords() {
         <div className='flex flex-col p-6'>
 
             {/* Logo and title */}
-            <div className='flex justify-between items-center mb-4 bg-gray-100 p-2 rounded-lg'>
+            <div className='flex justify-between items-center mb-4 bg-gray-50 p-2 rounded-lg'>
 
                 <div className='flex flex-row justify-between items-center'>
                     <img src={Logo} alt='logo' className='w-10 h-10 mr-3' /> 
